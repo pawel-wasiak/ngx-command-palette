@@ -111,6 +111,11 @@
       "root": "projects/ngx-command-palette",
       "sourceRoot": "projects/ngx-command-palette/src",
       "prefix": "ngx",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

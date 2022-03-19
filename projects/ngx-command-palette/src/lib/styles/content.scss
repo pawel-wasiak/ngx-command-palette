@@ -1,0 +1,43 @@
+.ngx-command-palette {
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ngx-command-palette-bg-color);
+    z-index: 1000;
+  }
+
+  &__header {
+    &-input {
+      border: none;
+      background: none;
+    }
+
+    &-input-group {
+      position: relative;
+    }
+
+    &-selected-item {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__body {
+    position: fixed;
+    margin: 10vh auto;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90vh;
+    border-color: 1 px solid var(--ngx-command-palette-body-border-color);
+    border-radius: var(--ngx-command-palette-body-border-radius);
+    background: var(--ngx-command-palette-body-bg-color);
+    padding: var(--ngx-command-palette-padding);
+  }
+
+}

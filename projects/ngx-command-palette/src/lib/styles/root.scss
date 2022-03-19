@@ -1,0 +1,13 @@
+:root {
+  --ngx-command-palette-bg-color: rgba(0, 0, 0, .7);
+  --ngx-command-palette-body-bg-color: #fff;
+  --ngx-command-palette-body-border-radius: 8px;
+  --ngx-command-palette-body-border-color: unset;
+  --ngx-command-palette-padding: 4px;
+}
+
+[data-color-theme='dark'] {
+  &:root {
+    --ngx-command-palette-body-border-color: gray;
+  }
+}

@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'ngx-command-palette',
-  templateUrl: './command-palette.component.html',
-  styleUrls: ['./styles/styles.scss'],
+  selector: 'ngx-command-palette-content',
+  templateUrl: './command-palette-content.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommandPaletteComponent implements OnInit {
+export class CommandPaletteContentComponent implements OnInit {
 
   constructor() { }
 
