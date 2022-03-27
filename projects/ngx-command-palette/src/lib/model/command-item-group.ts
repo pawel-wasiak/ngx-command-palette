@@ -1,6 +1,6 @@
 import { CommandItem } from 'projects/ngx-command-palette/src/lib/model/command-item';
 
-export type CommandItemSection = {
+export type CommandItemGroup = {
   readonly title?: string;
-  readonly items: Array<CommandItem>;
+  readonly items: CommandItem[];
 };

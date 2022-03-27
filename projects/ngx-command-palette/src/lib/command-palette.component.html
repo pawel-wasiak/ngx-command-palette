@@ -1,8 +1,21 @@
 <div class="ngx-command-palette__overlay">
 
   <div class="ngx-command-palette__body">
-    <ngx-command-palette-header class="ngx-command-palette__header"></ngx-command-palette-header>
-    <ngx-command-palette-content class="ngx-command-palette__content"></ngx-command-palette-content>
+    <ngx-command-palette-header
+      (searchedValue$)="onSearchedValue($event)"
+      (keyDownPressed$)="onSelectNextItem()"
+      (keyUpPressed$)="onSelectPreviousItem()"
+      (keyEnterPressed$)="onCallCallbackItem()"
+      class="ngx-command-palette__header">
+    </ngx-command-palette-header>
+
+    <ngx-command-palette-content
+      [groups]="filteredGroups"
+      [selectedItemIndex]="selectedItemIndex"
+      (itemVisited$)="onSelectItem($event)"
+      (itemClicked$)="onCallCallbackItem($event)"
+      class="ngx-command-palette__content">
+    </ngx-command-palette-content>
 
     <div class="ngx-command-palette__footer"></div>
   </div>

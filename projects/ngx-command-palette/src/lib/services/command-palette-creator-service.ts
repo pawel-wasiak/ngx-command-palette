@@ -24,7 +24,7 @@ export class CommandPaletteCreatorService {
     this.componentRef = factory.create(this.injector);
     this.applicationRef.attachView(this.componentRef.hostView);
     this.componentRef.changeDetectorRef.detectChanges();
-    this.document.body.appendChild(this.componentRef.location.nativeElement);
+    this.document.body.prepend(this.componentRef.location.nativeElement);
   }
 
   destroy(): void {

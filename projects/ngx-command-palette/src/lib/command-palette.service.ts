@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CommandPaletteShortcutsService } from 'projects/ngx-command-palette/src/lib/services/command-palette-shortcuts.service';
+import { CommandPaletteGroupStorageService } from 'projects/ngx-command-palette/src/lib/services/command-palette-group-storage.service';
+import { CommandItemGroup } from 'projects/ngx-command-palette/src/lib/model/command-item-group';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,8 @@ import { CommandPaletteShortcutsService } from 'projects/ngx-command-palette/src
 export class CommandPaletteService {
 
   constructor(
-    private readonly commandPaletteShortcutsService: CommandPaletteShortcutsService
+    private readonly commandPaletteShortcutsService: CommandPaletteShortcutsService,
+    private readonly commandPaletteSectionsStorageService: CommandPaletteGroupStorageService
   ) {
   }
 
@@ -17,5 +20,14 @@ export class CommandPaletteService {
 
   destroy(): void {
     this.commandPaletteShortcutsService.destroy();
+  }
+
+  addGroups(groups: CommandItemGroup[]): void {
+    this.commandPaletteSectionsStorageService.set(groups);
+  }
+
+  removeGroups(groupsName: string[]): void {
+    const savedSections = this.commandPaletteSectionsStorageService.get();
+    this.commandPaletteSectionsStorageService.set(savedSections.filter(s => groupsName.some(n => n !== s.title)));
   }
 }

@@ -8,8 +8,9 @@ export class CommandPaletteShortcutsService {
 
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
-  private readonly modifierKeys: Array<string> = ['Control', 'Meta'];
+  private readonly modifierKeys: string[] = ['Control', 'Meta'];
   private readonly keyK: string = 'KeyK';
+  private readonly keyEscape: string = 'Escape';
 
   constructor(
     @Inject(DOCUMENT) public readonly document: Document,
@@ -25,6 +26,10 @@ export class CommandPaletteShortcutsService {
       .subscribe((event: KeyboardEvent) => {
         if (this.canOpenDialog(event)) {
           this.commandPaletteCreatorService.create();
+        }
+
+        if (event.code === this.keyEscape) {
+          this.commandPaletteCreatorService.destroy();
         }
       });
   }

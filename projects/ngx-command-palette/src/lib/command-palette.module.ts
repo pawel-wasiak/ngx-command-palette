@@ -5,10 +5,13 @@ import { CommandPaletteContentComponent } from './content/command-palette-conten
 import { CommonModule } from '@angular/common';
 import { CommandPaletteShortcutsService } from 'projects/ngx-command-palette/src/lib/services/command-palette-shortcuts.service';
 import { CommandPaletteCreatorService } from 'projects/ngx-command-palette/src/lib/services/command-palette-creator-service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommandPaletteGroupStorageService } from 'projects/ngx-command-palette/src/lib/services/command-palette-group-storage.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CommandPaletteComponent,
@@ -17,7 +20,8 @@ import { CommandPaletteCreatorService } from 'projects/ngx-command-palette/src/l
   ],
   providers: [
     CommandPaletteShortcutsService,
-    CommandPaletteCreatorService
+    CommandPaletteCreatorService,
+    CommandPaletteGroupStorageService
   ]
 })
 export class CommandPaletteModule { }
