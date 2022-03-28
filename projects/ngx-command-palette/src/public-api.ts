@@ -5,7 +5,6 @@
 export * from './lib/command-palette.service';
 export * from './lib/command-palette.component';
 export * from './lib/command-palette.module';
-export *  from 'fuse.js';
 
 export * from './lib/content/command-palette-content.component';
 export * from './lib/header/command-palette-header.component';
