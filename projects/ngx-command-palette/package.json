@@ -1,6 +1,6 @@
 {
   "name": "ngx-command-palette",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pawel-wasiak/ngx-command-palette"
