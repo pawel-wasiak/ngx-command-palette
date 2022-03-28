@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { fromEvent, Subject, takeUntil } from 'rxjs';
-import { CommandPaletteCreatorService } from 'projects/ngx-command-palette/src/lib/services/command-palette-creator-service';
+import { CommandPaletteCreatorService } from './command-palette-creator-service';
 
 @Injectable()
 export class CommandPaletteShortcutsService {

@@ -12,8 +12,8 @@ import {
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
-import { CommandItemGroup } from 'projects/ngx-command-palette/src/lib/model/command-item-group';
-import { CommandPaletteScrollCalculator, CommandPaletteScrollParams } from 'projects/ngx-command-palette/src/lib/content/command-palette-scroll-calculator';
+import { CommandItemGroup } from '../model/command-item-group';
+import { CommandPaletteScrollCalculator, CommandPaletteScrollParams } from './command-palette-scroll-calculator';
 import { DOCUMENT } from '@angular/common';
 
 @Component({

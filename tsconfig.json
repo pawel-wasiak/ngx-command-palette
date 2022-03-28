@@ -13,7 +13,6 @@
     "sourceMap": true,
     "paths": {
       "ngx-command-palette": [
-        "dist/ngx-command-palette/ngx-command-palette",
         "dist/ngx-command-palette"
       ]
     },

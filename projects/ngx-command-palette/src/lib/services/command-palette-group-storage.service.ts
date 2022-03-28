@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { CommandItemGroup } from 'projects/ngx-command-palette/src/lib/model/command-item-group';
+import { CommandItemGroup } from '../model/command-item-group';
 
 @Injectable()
 export class CommandPaletteGroupStorageService {

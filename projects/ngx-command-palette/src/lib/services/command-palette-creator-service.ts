@@ -1,6 +1,6 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Inject, Injectable, Injector } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { CommandPaletteComponent } from 'projects/ngx-command-palette/src/lib/command-palette.component';
+import { CommandPaletteComponent } from '../command-palette.component';
 
 @Injectable()
 export class CommandPaletteCreatorService {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CommandPaletteShortcutsService } from 'projects/ngx-command-palette/src/lib/services/command-palette-shortcuts.service';
-import { CommandPaletteGroupStorageService } from 'projects/ngx-command-palette/src/lib/services/command-palette-group-storage.service';
-import { CommandItemGroup } from 'projects/ngx-command-palette/src/lib/model/command-item-group';
+import { CommandPaletteShortcutsService } from './services/command-palette-shortcuts.service';
+import { CommandPaletteGroupStorageService } from './services/command-palette-group-storage.service';
+import { CommandItemGroup } from './model/command-item-group';
 
 @Injectable({
   providedIn: 'root'

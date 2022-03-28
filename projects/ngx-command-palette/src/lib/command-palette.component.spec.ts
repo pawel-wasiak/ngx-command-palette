@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommandPaletteComponent } from 'projects/ngx-command-palette/src/lib/command-palette.component';
+import { CommandPaletteComponent } from './command-palette.component';
 
 describe('NgxCommandPaletteComponent', () => {
   let component: CommandPaletteComponent;

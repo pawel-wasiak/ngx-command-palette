@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { CommandPaletteCreatorService } from 'projects/ngx-command-palette/src/lib/services/command-palette-creator-service';
-import { CommandPaletteGroupStorageService } from 'projects/ngx-command-palette/src/lib/services/command-palette-group-storage.service';
 import { Subject, takeUntil } from 'rxjs';
-import { CommandItemGroup } from 'projects/ngx-command-palette/src/lib/model/command-item-group';
-import { CommandItem } from 'projects/ngx-command-palette/src/lib/model/command-item';
+import { CommandItemGroup } from './model/command-item-group';
+import { CommandItem } from './model/command-item';
 import Fuse from 'fuse.js';
+import { CommandPaletteGroupStorageService } from './services/command-palette-group-storage.service';
+import { CommandPaletteCreatorService } from './services/command-palette-creator-service';
 
 @Component({
   selector: 'ngx-command-palette',
@@ -26,8 +26,8 @@ export class CommandPaletteComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly commandPaletteCreatorService: CommandPaletteCreatorService,
-    private readonly commandPaletteGroupStorageService: CommandPaletteGroupStorageService
+    private readonly commandPaletteGroupStorageService: CommandPaletteGroupStorageService,
+    private readonly commandPaletteCreatorService: CommandPaletteCreatorService
   ) {
   }
 
@@ -55,7 +55,7 @@ export class CommandPaletteComponent implements OnInit, OnDestroy {
       return {
         title: g.title,
         items: filteredItems
-      }
+      };
     }).filter(g => g.items.length);
 
     this.setAllItems(this.filteredGroups);
@@ -87,7 +87,10 @@ export class CommandPaletteComponent implements OnInit, OnDestroy {
 
   onCallCallbackItem(itemIndex?: number): void {
     const selectedItem = this.allFilteredItems[itemIndex ?? this.selectedItemIndex];
-    selectedItem?.callback;
+    if (selectedItem.callback) {
+      selectedItem.callback();
+    }
+
     this.commandPaletteCreatorService.destroy();
   }
 
