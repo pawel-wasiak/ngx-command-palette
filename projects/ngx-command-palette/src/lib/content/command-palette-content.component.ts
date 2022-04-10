@@ -15,6 +15,7 @@ import {
 import { CommandItemGroup } from '../model/command-item-group';
 import { CommandPaletteScrollCalculator, CommandPaletteScrollParams } from './command-palette-scroll-calculator';
 import { DOCUMENT } from '@angular/common';
+import { take, timer } from 'rxjs';
 
 @Component({
   selector: 'ngx-command-palette-content',
@@ -35,6 +36,8 @@ export class CommandPaletteContentComponent implements OnChanges, OnInit, AfterV
 
   @Output()
   readonly itemClicked$: EventEmitter<number> = new EventEmitter<number>();
+
+  private disableMouseEnter: boolean = false;
 
   private elementRefNativeElem!: HTMLElement;
   private readonly scrollCalculator: CommandPaletteScrollCalculator = new CommandPaletteScrollCalculator();
@@ -61,7 +64,16 @@ export class CommandPaletteContentComponent implements OnChanges, OnInit, AfterV
     });
   }
 
+  onMouseenter(index: number): void {
+    if (this.disableMouseEnter) {
+      return;
+    }
+
+    this.itemVisited$.next(index);
+  }
+
   private scrollToSelectedItem(): void {
+    this.disableMouseEnter = true;
     const selectedElement = this.document.querySelectorAll<HTMLElement>('.ngx-command-palette__content-item')[this.selectedItemIndex] as HTMLElement;
     const selectedElementTopPosition = selectedElement.offsetTop;
     const containerTopPosition = this.elementRefNativeElem.offsetTop;
@@ -79,9 +91,14 @@ export class CommandPaletteContentComponent implements OnChanges, OnInit, AfterV
 
     const calculatedScrollTop = this.scrollCalculator.calculate(params);
 
-    this.elementRefNativeElem.scrollTo({
-      top: calculatedScrollTop < 0 ? 0 : calculatedScrollTop
+    this.elementRefNativeElem.scroll({
+      top: calculatedScrollTop < 0 ? 0 : calculatedScrollTop,
+      behavior: 'auto'
     });
+
+    timer(1)
+      .pipe(take(1))
+      .subscribe(() => this.disableMouseEnter = false)
   }
 
 }

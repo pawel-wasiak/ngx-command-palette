@@ -1,27 +1,76 @@
-# CommandPalette
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+# ngx-command-palette
 
-## Development server
+Command Palette is a quick searcher which can improve your application to the next level. On 'cmd/ctr + k' short cut user can open dialogue and search any data developer provides.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Install ngx-command-palette with npm
 
-## Running unit tests
+```bash
+npm i ngx-command-palette
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+In your app, add import: CommandPaletteModule
 
-## Running end-to-end tests
+```javascript
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+import { CommandPaletteModule } from 'command-palette.module';
 
-## Further help
+@NgModule({
+    ...
+    imports: [
+        CommandPaletteModule
+    ],
+    ...
+})
+export class AppModule { }
+```
+## Usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```javascript
+export class AppComponent implements OnInit, OnDestroy {
+
+  constructor(private readonly commandPaletteService: CommandPaletteService) {
+  }
+
+  ngOnInit(): void {
+    // init shortcuts listener (cmd/ctrl + k)
+    this.commandPaletteService.init();
+    // add groups with items
+    this.commandPaletteService.addGroups(this.getGroups());
+  }
+
+  ngOnDestroy(): void {
+    // destroy shortcuts listener
+    this.commandPaletteService.destroy();
+  }
+
+  private getGroups(): CommandItemGroup[] {
+    // simple example how to define group with items
+    return [{
+      title: 'Movies',
+      items: [
+        {
+            text: 'Nomadland',
+            // icons css class is optional
+            iconClass: 'rocket-icon'
+            // callback is optional, it's called when you click on item or press enter
+            callback: () => {}
+            // href is optional, you can use this property instead of callback, it's called when you click on item or press enter
+            href: ''
+        }
+      ]
+    }];
+  }
+}
+```
+
+
+## License
+
+[MIT](https://github.com/pawel-wasiak/ngx-command-palette/blob/main/LICENSE)
+

@@ -29,13 +29,13 @@ export class CommandPaletteHeaderComponent implements OnInit, AfterViewInit, OnD
   readonly searchedValue$: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
-  readonly keyUpPressed$: Subject<void> = new Subject<void>();
+  readonly keyUpPressed$: EventEmitter<void> = new EventEmitter<void>();
 
   @Output()
-  readonly keyDownPressed$: Subject<void> = new Subject<void>();
+  readonly keyDownPressed$: EventEmitter<void> = new EventEmitter<void>();
 
   @Output()
-  readonly keyEnterPressed$: Subject<void> = new Subject<void>();
+  readonly keyEnterPressed$: EventEmitter<void> = new EventEmitter<void>();
 
   readonly inputControl: FormControl = new FormControl('');
   private readonly onDestroy$: Subject<void> = new Subject<void>();
@@ -67,17 +67,17 @@ export class CommandPaletteHeaderComponent implements OnInit, AfterViewInit, OnD
 
   onKeyUp(event: Event): void {
     this.stopDefaultBehavior(event);
-    this.keyUpPressed$.next();
+    this.keyUpPressed$.emit();
   }
 
   onKeyDown(event: Event): void {
     this.stopDefaultBehavior(event);
-    this.keyDownPressed$.next();
+    this.keyDownPressed$.emit();
   }
 
   onKeyEnter(event: Event): void {
     this.stopDefaultBehavior(event);
-    this.keyEnterPressed$.next();
+    this.keyEnterPressed$.emit();
   }
 
   clearInput(): void {
@@ -96,7 +96,7 @@ export class CommandPaletteHeaderComponent implements OnInit, AfterViewInit, OnD
           debounceTime(400),
           takeUntil(this.onDestroy$)
         )
-        .subscribe(value => this.searchedValue$.next(value));
+        .subscribe(value => this.searchedValue$.emit(value));
 
   }
 

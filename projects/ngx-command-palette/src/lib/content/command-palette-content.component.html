@@ -6,8 +6,8 @@
 
     <div class="ngx-command-palette__content-item-group-container">
       <ng-container *ngFor="let item of group.items; let itemIndex = index">
-        <a (mouseenter)="itemVisited$.next(itemIndex + groupIndex)"
-           (click)="itemClicked$.next(itemIndex + groupIndex)"
+        <a (mouseenter)="onMouseenter(itemIndex + groupIndex)"
+           (click)="itemClicked$.emit(itemIndex + groupIndex)"
            [class.ngx-command-palette__content-item--selected]="itemIndex + groupIndex === selectedItemIndex"
            [attr.href]="item.href"
            class="ngx-command-palette__content-item">
